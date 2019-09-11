@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComicBookGallery.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,18 +11,19 @@ namespace ComicBookGallery.Controllers
     {
         public ActionResult Detail()
         {
-            ViewBag.SeriesTitle = "The Amazing Spider Man";
-            ViewBag.IssueNumber = 700;
-            ViewBag.Description = "<p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives..<strong>will Peter Paker?</strong></p>";
-            ViewBag.Artists = new string[]
-            {
-                "Script: Dan Slott",
-                "Pencils: Humberto Ramos",
-                "Inks: Victor Olazaba",
-                "Colors: Edgar Delgado",
-                "Letters: Chris Eliopoulos"
+            var comicBook = new ComicBook();
+            comicBook.SeriesTitle = "The Amazing Spider Man";
+            comicBook.IssueNumber = 700;
+            comicBook.DescriptionHtml = "<p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives..<strong>will Peter Paker?</strong></p>";
+            comicBook.Artists = new Artist[]
+            {   
+                new Artist () {Role = "Script", Name = "Dan Slott"},
+                new Artist () {Role = "Pencils",Name = "Humberto Ramos"},
+                new Artist () {Role = "Inks", Name = "Victor Olazaba"},
+                new Artist () {Role = "Colors", Name = "Edgar Delgado"},
+                new Artist () { Role = "Letters", Name = "Chris Eliopoulos"}
             };
-            return View();
+            return View(comicBook);
         }
     }
 }
